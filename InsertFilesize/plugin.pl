@@ -4,7 +4,7 @@ use strict;
 use base qw( MT::Plugin );
 use MT;
 
-our $VERSION = '0.1';
+our $VERSION = '0.11';
 
 my $plugin = __PACKAGE__->new({
     id => 'InsertFilesize',
@@ -25,7 +25,7 @@ sub as_html {
     require MT::Util;
     my $text = sprintf '<a target="_blank" href="%s">%s</a>',
         MT::Util::encode_html( $asset->url ),
-        MT::Util::encode_html( $asset->display_name )." (".uc(MT::Util::encode_html( $asset->file_ext )).":".sprintf("%.0f",(-s $asset->file_path) / 1024) . "KB)" ;
+        MT::Util::encode_html( $asset->display_name )." (".uc(MT::Util::encode_html( $asset->file_ext )).":".sprintf("%.0f",(-s $asset->file_path) / 1024) . "KB）" ;
     return $param->{enclose} ? $asset->enclose($text) : $text;
 }
 
